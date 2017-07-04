@@ -1,12 +1,14 @@
 package uk.co.noxtech.docker.producer;
 
-import com.google.i18n.phonenumbers.NumberParseException;
-import org.springframework.stereotype.Component;
-import uk.co.noxtech.docker.data.Telephone;
-
 import java.util.concurrent.ThreadLocalRandom;
 
-@Component
+import org.springframework.stereotype.Service;
+
+import com.google.i18n.phonenumbers.NumberParseException;
+
+import uk.co.noxtech.docker.data.Telephone;
+
+@Service
 public class PhoneServiceImpl implements PhoneService {
 
     private static final String DEFAULT_REGION = "GB";

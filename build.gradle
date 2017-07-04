@@ -9,16 +9,25 @@ apply plugin: 'org.springframework.boot'
 
 jar {
     baseName = 'uk.co.noxtech.docker.producer'
-    version =  '0.1.0'
+    version = '0.1.0'
 }
 
 dependencies {
+    // project
     compile project(":uk.co.noxtech.docker.data")
+
+    // spring boot
     compile("org.springframework.boot:spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
     compile("org.springframework.boot:spring-boot-starter-jetty")
     compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    // rabbitmq
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+
+    // spring boot test
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 

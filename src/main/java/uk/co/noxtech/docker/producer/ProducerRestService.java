@@ -1,9 +1,12 @@
 package uk.co.noxtech.docker.producer;
 
-import com.google.i18n.phonenumbers.NumberParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.i18n.phonenumbers.NumberParseException;
+
+import uk.co.noxtech.docker.data.Telephone;
 
 @RestController
 public class ProducerRestService {
@@ -11,10 +14,15 @@ public class ProducerRestService {
     @Autowired
     private PhoneService phoneService;
 
+    @Autowired
+    private ProducerService producerService;
+
     @RequestMapping("/")
     public String index() {
         try {
-            return phoneService.randomTelephone().getE164Number();
+            Telephone telephone = phoneService.randomTelephone();
+            producerService.sendMessage(telephone);
+            return telephone.getE164Number();
         } catch (NumberParseException e) {
             return e.toString();
         }
