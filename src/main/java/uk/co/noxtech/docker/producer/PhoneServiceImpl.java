@@ -1,12 +1,10 @@
 package uk.co.noxtech.docker.producer;
 
-import java.util.concurrent.ThreadLocalRandom;
-
-import org.springframework.stereotype.Service;
-
 import com.google.i18n.phonenumbers.NumberParseException;
-
+import org.springframework.stereotype.Service;
 import uk.co.noxtech.docker.data.Telephone;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 @Service
 public class PhoneServiceImpl implements PhoneService {
@@ -17,12 +15,12 @@ public class PhoneServiceImpl implements PhoneService {
     public Telephone randomTelephone() throws NumberParseException {
         int randomRegion = ThreadLocalRandom.current().nextInt(0, REGION_CODES.length);
 
-        return new Telephone(DEFAULT_REGION, randomPhoneNumber(), REGION_CODES[randomRegion]);
+        return new Telephone(Telephone.createPhoneNumber(randomPhoneNumber(), DEFAULT_REGION, REGION_CODES[randomRegion]));
     }
 
     @Override
     public Telephone randomTelephone(String regionCode) throws NumberParseException {
-        return new Telephone(DEFAULT_REGION, randomPhoneNumber(), regionCode);
+        return new Telephone(Telephone.createPhoneNumber(randomPhoneNumber(), DEFAULT_REGION, regionCode));
     }
 
     private String randomPhoneNumber() {
