@@ -2,13 +2,10 @@
 /.idea
 /out
 /build
-/gradle
 uk.co.noxtech.docker.producer.ipr
 uk.co.noxtech.docker.producer.iws
 uk.co.noxtech.docker.producer.iml
 .classpath
 .project
 .gradle
-gradlew.bat
-gradlew
 
